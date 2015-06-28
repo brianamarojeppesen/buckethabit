@@ -1,123 +1,123 @@
-var $bs = function() {
-     this.connections = []
-     this.saved_query = null
-     return this
-}
+( function() {
+    "use strict";
 
-$bs.prototype.connect = function(selector, callback) {
-     this.connections.push({
-          selector: selector,
-          callback: callback
-     })
-}
+    var $bs = function() {
+        this.connections = [];
+        this.saved_query = null;
+        return this;
+    };
 
-$bs.prototype.update = function(context) {
+    $bs.prototype.connect = function( selector, callback ) {
+        this.connections.push( {
+            selector: selector,
+            callback: callback
+        } );
+    };
 
-     $this = this;
+    $bs.prototype.update = function( context ) {
 
-     if (typeof context == 'Array') {
-          $.each(context, function(index, item) {
-               $this.update(item)
-          })
-     } else
-     {
-          $context = (context) ? $ ( context ) : $ ( 'html' )
+        var $this = this;
 
-          $.each($this.connections, function(index, $connection) {
+        if ( typeof context === "Array" ) {
+            $.each( context, function( index, item ) {
+                $this.update( item );
+            } );
+        } else {
+            var $context = ( context ) ? $( context ) : $( "html" );
 
-               $context.find($connection.selector ).each(function(index, node) {
-                    if (!$(this ).attr('bs_connected'))
-                    {
-                         $ ( this ).attr ( 'bs_connected' , true )
-                         $connection.callback.call ( node , index , node );
+            $.each( $this.connections, function( index, $connection ) {
+
+                $context.find( $connection.selector ).each( function( index, node ) {
+                    if ( !$( this ).attr( "bs_connected" ) ) {
+                        $( this ).attr( "bs_connected", true );
+                        $connection.callback.call( node, index, node );
                     }
-               })
-          })
-     }
-}
+                } );
+            } );
+        }
+    };
 
-$bs.prototype.query = function(url) {
-     this.saved_query = {
-          url: url,
-          type: 'POST',
-          data: {},
-          dataType: 'JSON'
-     };
-     return this
-}
+    $bs.prototype.query = function( url ) {
+        this.saved_query = {
+            url: url,
+            type: "POST",
+            data: {},
+            dataType: "JSON"
+        };
+        return this;
+    };
 
-$bs.prototype.with_data = function(data) {
-     this.saved_query.data = data
-     return this
-}
+    $bs.prototype.with_data = function( data ) {
+        this.saved_query.data = data;
+        return this;
+    };
 
-$bs.prototype.get_query = function() {
-     this.saved_query.data['ajax'] = 1
-     this.saved_query.data['bucket_csrf_token'] = $.pgwCookie({name: 'bucket_csrf_cookie'})
+    $bs.prototype.get_query = function() {
+        this.saved_query.data.ajax = 1;
+        this.saved_query.data.bucket_csrf_token = $.pgwCookie( { name: "bucket_csrf_cookie" } );
 
-     return this.saved_query
-}
+        return this.saved_query;
+    };
 
-$bs.prototype.has_query = function() {
-     return (this.saved_query !== null)
-}
+    $bs.prototype.has_query = function() {
+        return ( this.saved_query !== null );
+    };
 
+    $bs.prototype.post = function( success, error ) {
+        var $this = this;
 
+        console.log( "Running query" );
 
-$bs.prototype.post = function(success, error) {
-     $this = this
+        var $request = this.get_query();
 
-     console.log('Running query')
+        this.saved_query = null;
 
-     $request = this.get_query()
+        $request.success = function( response ) {
+            response = $.parseJSON( response );
+            $this.respond( response, success );
+        };
 
-     this.saved_query = null;
+        $request.error = function( response ) {
+            if ( typeof error === "function" ) {
+                error( response );
+            }
+        };
 
-     $request['success'] = function(response) {
-          response = $.parseJSON(response)
-          $this.respond(response, success)
-     }
+        $.ajax( $request );
 
-     $request['error'] = function(response) {
-          if (typeof error == 'function') error(response)
-     }
+    };
 
-     $.ajax($request)
+    $bs.prototype.respond = function( response, callback ) {
+        console.log( "Parsing response." );
 
-}
+        $( response.changes ).each(
+            function() {
+                if ( this.content !== null ) {
+                    $( this.target ).html( this.content );
+                } else if ( this.value !== null ) {
+                    $( this.target ).val( this.value );
+                }
 
-$bs.prototype.respond = function(response, callback) {
-     console.log('Parsing response.')
+                if ( !response.is_test ) {
+                    $BS.update( this.target );
+                }
 
-     $ ( response.changes ).each (
-               function ()
-               {
-                    //console.log('response item:')
-                    //console.log(this)
-                    if (this.content !== null)
-                    {
-                         $ ( this.target ).html ( this.content )
-                    } else if (this.value !== null) {
-                         $( this.target ).val( this.value )
-                    }
+                if ( callback ) {
+                    callback.call( response );
+                }
+            }
+        );
 
-                    if (!response.is_test) {
-                         $BS.update( this.target )
-                    }
+        if ( response.redirect ) {
+            $BS.query( response.redirect );
+            History.pushState(
+                { url: response.redirect },
+                $( this ).attr( "title" ),
+                response.redirect
+            );
+        }
+    };
 
-                    if ( callback )
-                    {
-                         callback.call ( response )
-                    }
-               }
-     )
+    var $BS = new $bs();
 
-     if (response.redirect) {
-          $BS.query(response.redirect)
-          History.pushState({url: response.redirect}, $(this ).attr('title'), response.redirect)
-     }
-}
-
-
-
-var $BS = new $bs()
+}() );
