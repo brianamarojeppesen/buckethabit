@@ -1,6 +1,6 @@
 {
-    "description" : "The CodeIgniter framework",
-    "name" : "codeigniter/framework",
+    "description" : "Bucket Habit",
+    "name" : "brianamarojeppesen/buckethabit",
     "license": "MIT",
     "require": {
         "php": ">=5.2.4"
