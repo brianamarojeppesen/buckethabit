@@ -1,0 +1,1 @@
+<p>Your account has been created. <?=anchor('', 'Login Now'); ?></p>
