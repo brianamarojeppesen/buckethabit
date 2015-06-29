@@ -3,9 +3,11 @@
     "name" : "brianamarojeppesen/buckethabit",
     "license": "MIT",
     "require": {
-        "php": ">=5.2.4"
+        "php": ">=5.2.4",
+        "phpunit/phpunit": "4.7.5",
+        "phpunit/dbunit": "1.4.0",
+        "phpmd/phpmd": "2.2.3"
     },
     "require-dev": {
-        "mikey179/vfsStream": "1.1.*"
     }
 }

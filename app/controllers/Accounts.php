@@ -71,6 +71,10 @@
                }
           }
 
+         /**
+          * Signup
+          * Presents user with a signup form.
+          */
           public
           function signup ()
           {
