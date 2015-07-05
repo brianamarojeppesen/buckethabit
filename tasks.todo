@@ -27,8 +27,8 @@ Components:
 
 Projects:
 ☐ App Frame:
-  ☐ Header @version(0.0.2)
-  ☐ Footer @version(0.0.2)
+  ☐ Build site header @version(0.0.2)
+  ☐ Build site footer @version(0.0.2)
 ☐ Accounts:
   ☐ View Page
   ☐ Update Page
