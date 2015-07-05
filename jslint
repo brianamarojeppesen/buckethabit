@@ -1,0 +1,7 @@
+
+> buckethabit@0.0.1 csslint /Users/brianamarojeppesen/Projects/Sites/buckethabit
+> csslint ./source/styles/**.css
+
+
+
+csslint: No errors in /Users/brianamarojeppesen/Projects/Sites/buckethabit/source/styles/styles.css.

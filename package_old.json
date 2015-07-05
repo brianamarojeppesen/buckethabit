@@ -1,0 +1,67 @@
+{
+  "name": "buckethabit",
+  "version": "0.0.1",
+  "description": "A Bucket List App",
+  "main": "index.php",
+  "devDependencies": {
+    "rimraf": "latest",
+
+    "jshint": "latest",
+    "scss-lint": "latest",
+    "phplint": "latest",
+
+    "postcss": "latest",
+    "postcss-cli": "latest",
+
+    "postcss-color-rgba-fallback": "latest",
+    "postcss-opacity": "latest",
+    "autoprefixer": "latest",
+    "pixrem": "latest",
+
+    "postcss-each": "latest",
+    "postcss-for": "latest",
+    "postcss-conditionals": "latest",
+    "postcss-mixins": "latest",
+    "postcss-nested": "latest",
+    "postcss-pseudo-class-enter": "latest",
+    "postcss-simple-vars": "latest",
+    "postcss-vertical-rhythm": "latest",
+    "csstyle": "latest",
+
+    "postcss-brand-colors": "latest",
+    "postcss-color-mix": "latest",
+    "postcss-color-scale": "latest",
+    "postcss-hexrgba": "latest"
+  },
+  "scripts": {
+    "clean": "rimraf dist/*",
+
+    "lint:js": "jshint ./src/scripts/**.js",
+    "lint:scss": "scss-lint ./src/styles/**.scss",
+    "lint:php": "phplint './src/app/**/*.php'",
+    "lint": "npm run lint:php && npm run lint:scss && npm run lint:js",
+
+    "build:css:fallbacks": "postcss -u postcss-opacity -u postcss-color-rgba-fallback -u autoprefixer -u pixrem -c ./postcss.json -o ./src/styles/test.done.css ./src/styles/test.css",
+    "build:css:languageExtensions": "postcss -u postcss-each -u postcss-for -u postcss-conditionals -u postcss-mixins -u postcss-nested -u postcss-pseudo-class-enter -u postcss-simple-vars -u postcss-vertical-rhythm -u csstyle -c ./postcss.json -o ./src/styles/test.done.css ./src/styles/test.css",
+    "build:css:colors": "postcss -u postcss-brand-colors -u postcss-color-mix -u postcss-color-scale -u postcss-hexrgba -o ./src/styles/test.done.css ./src/styles/test.css",
+    "build:css:post": "postcss -u postcss-mixins -u postcss-nested -o ./src/styles/test.done.css ./src/styles/test.css",
+
+    "test": "mocha test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brianamarojeppesen/buckethabit"
+  },
+  "keywords": [
+    "bucket",
+    "list",
+    "web",
+    "app"
+  ],
+  "author": "Brian Amaro-Jeppesen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brianamarojeppesen/buckethabit/issues"
+  },
+  "homepage": "https://github.com/brianamarojeppesen/buckethabit"
+}

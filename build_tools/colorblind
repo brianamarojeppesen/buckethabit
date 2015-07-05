@@ -1,0 +1,96 @@
+#!/usr/bin/env node
+
+"use strict";
+
+var fs = require("fs-plus");
+var minimist = require("minimist");
+var postcss = require("postcss");
+var colorBlind = require("postcss-colorblind");
+
+var colorBlindTypes = [
+    "protanomaly",
+    "protanopia",
+    "deuteranomaly",
+    "deuteranopia",
+    "tritanomaly",
+    "tritanopia",
+    "achromatomaly",
+    "achromatopsia"
+];
+
+var showHelp = function () {
+    console.log("Usage: colorblind file");
+    console.log("");
+    console.log("Description:");
+    console.log("  Generate colorblind stylesheets.");
+    console.log("");
+    console.log("Options:");
+    console.log("  -h, --help       Show this message.");
+    console.log("  -v, --version    Print version information.");
+
+    return;
+};
+
+var argv = minimist(process.argv.slice(2), {
+    boolean: [
+        "help",
+        "version"
+    ],
+    alias: {
+        "h": "help",
+        "v": "version"
+    },
+    default: {
+        "help": false,
+        "version": false
+    }
+});
+
+if (argv._.length < 1) {
+    argv.help = true;
+}
+
+switch (true) {
+    case argv.version:
+        console.log("styleguide v1.0");
+
+        break;
+
+    case argv.help:
+        showHelp();
+
+        break;
+
+    default:
+        var css = "";
+        var stdin;
+
+        var cssFile = argv._[0];
+
+        if (!cssFile) {
+            console.log("No css specified.");
+            process.exit(1);
+        }
+
+        css = fs.readFileSync(cssFile, "utf-8");
+
+        for (var colorBlindType in colorBlindTypes) {
+            var cbPath = cssFile.split('/');
+            var cbFile = cbPath.pop().split('.');
+            cbFile.splice( 1, 0, colorBlindTypes[colorBlindType] );
+            var cbFullPath = cbPath.join('/') + '/colorblind/' + cbFile.join('.');
+            console.log("Generating colorblind stylesheet: " + cbFullPath + ".");
+
+            if (!fs.isDirectorySync(cbPath.join('/') + '/colorblind/')) {
+                fs.makeTreeSync(cbPath.join('/') + '/colorblind/');
+            }
+
+            var processed = postcss()
+                .use( colorBlind( { method: colorBlindTypes[colorBlindType] } ) )
+                .process(css)
+                .css;
+
+            fs.writeFileSync( cbFullPath, processed );
+        }
+}
+

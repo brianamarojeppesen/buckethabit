@@ -4,5 +4,14 @@
 */cache/*
 */cache/!index.html
 */cache/!.htaccess
-/sys/*
+.sass-cache
+/sys/
+/app/
 .idea/*
+node_modules
+*/.DS_Store
+/htdocs
+/build
+/vendor
+/ven
+composer.lock

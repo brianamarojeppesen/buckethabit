@@ -1,0 +1,24 @@
+{
+  "autoprefixer": {
+    "browsers": "> 5%"
+  },
+  "csstyle": {
+    "optionSymbol": "\\--",
+    "partSymbol": "__",
+    "tweakSymbol": "\\+",
+    "locationSymbol": "\\@",
+    "rootId": "csstyle"
+  },
+  "css-mqpacker": {
+    "sort": true
+  },
+  "doiuse": {
+    "browsers": "> 5%",
+    "json": true
+  },
+  "postcss_style_guide": {
+    "theme": "default",
+    "name": "Bucket Habit Styleguide",
+    "file": "./dist/htdocs/styles/analysis/styleguide"
+  }
+}

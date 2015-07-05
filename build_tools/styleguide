@@ -1,0 +1,118 @@
+#!/usr/bin/env node
+
+"use strict";
+
+var styleGuide = require("postcss-style-guide");
+var fs = require("fs-plus");
+var minimist = require("minimist");
+var postcss = require("postcss");
+var pkg = require("../package.json");
+var postcssOptions = require("../postcss.json");
+var styleGuideOptions = null;
+
+if (postcssOptions && postcssOptions.postcss_style_guide) {
+    styleGuideOptions = postcssOptions.postcss_style_guide;
+}
+
+var showHelp = function () {
+    console.log("Usage: styleguide [options] INPUT [OUTPUT]");
+    console.log("");
+    console.log("Description:");
+    console.log("  Generate a styleguide.");
+    console.log("");
+    console.log("Options:");
+    console.log("  -t, --theme      Theme to use. Default 'default'.");
+    console.log("  -n, --name       Project name.");
+    console.log("  -h, --help       Show this message.");
+    console.log("  -v, --version    Print version information.");
+    console.log("");
+    console.log("Default outpot is ./styleguide.html.");
+
+    return;
+};
+
+var argv = minimist(process.argv.slice(2), {
+    boolean: [
+        "help",
+        "theme",
+        "name",
+        "version"
+    ],
+    alias: {
+        "h": "help",
+        "t": "theme",
+        "n": "name",
+        "v": "version"
+    },
+    default: {
+        "help": false,
+        "theme": false,
+        "name": false,
+        "version": false
+    }
+});
+
+if (argv._.length < 1) {
+    argv.help = true;
+}
+
+switch (true) {
+    case argv.version:
+        console.log("styleguide v1.0");
+
+        break;
+
+    case argv.help:
+        showHelp();
+
+        break;
+
+    default:
+        var css = "";
+        var options = {
+            theme: null,
+            name: "Project Name",
+            file: "./styleguide.html"
+        };
+        var stdin;
+
+        if (argv.theme) {
+            options.theme = argv.theme;
+        } else if (styleGuideOptions && styleGuideOptions.theme) {
+            options.theme = styleGuideOptions.theme;
+        }
+
+        if (argv.name) {
+            options.name = argv.name;
+        } else if (styleGuideOptions && styleGuideOptions.name) {
+            options.name = styleGuideOptions.name;
+        }
+
+        if (argv._[1]) {
+            options.file = argv._[1];
+        } else if (styleGuideOptions && styleGuideOptions.file) {
+            options.file = styleGuideOptions.file;
+        }
+
+        var cssFile = argv._[0];
+
+        if (!cssFile) {
+            console.log("No css specified.");
+            process.exit(1);
+        }
+
+        css = fs.readFileSync(cssFile, "utf-8");
+        console.log('Writing ' + options.name + ' for ' + cssFile + ' to ' + options.file + ' with the ' + options.theme + ' theme.');
+
+        var styleguidePath = options.file.split('/');
+        styleguidePath.pop();
+        if (!fs.isDirectorySync(styleguidePath.join('/'))) {
+            fs.makeTreeSync(styleguidePath.join('/'));
+        }
+
+        var output = postcss()
+            .use( styleGuide( cssFile, options ) )
+            .process( css, {map: false} )
+            .css.trim();
+}
+

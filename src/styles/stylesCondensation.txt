@@ -1,0 +1,6 @@
+Start 189 kb / 141 kb
+Remove Color Classes 156 kb / 113 kb
+Remove form/ filled in checkboxes and ranges and radio with gap style 150 kb / 108 kb
+Removed elements from materialbox/css 147 kb / 106 kb
+Remove preloader 133 kb / 98 kb
+Removed much more css 128 kb / 94 kb

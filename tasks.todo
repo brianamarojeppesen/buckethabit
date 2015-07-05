@@ -1,0 +1,79 @@
+CSS:
+  Color:
+    All
+  Grid:
+    All
+  Helpers:
+    valign-wrapper & valign:
+      All
+
+
+General:
+  grid, footer
+Menu:
+  navbar, sideNav, badges
+Sign Up:
+  text, textarea, button, email, password, image
+Sign In:
+  text, button
+Accounts:
+
+
+
+Components:
+☐ App Frame:
+  ☐ menu (navbar)
+  ☐ sidebar (sideNav)
+
+Projects:
+☐ App Frame:
+  ☐ Header @version(0.0.2)
+  ☐ Footer @version(0.0.2)
+☐ Accounts:
+  ☐ View Page
+  ☐ Update Page
+  ☐ Accounts Table
+  ☐ Emails
+  ☐ Lost Password
+  ☐ Lost Username
+  ☐ Account Verification
+  ☐ Cronjob to Delete Unverified
+  ☐ Login Attempts
+☐ Faqs:
+  ☐ AJAX
+  ☐ Admin
+  ☐ Styling
+☐ News:
+  ☐ AJAX
+  ☐ Admin
+  ☐ Styling
+☐ Support:
+  ☐ Ticket
+  ☐ Ticket Coms
+☐ Bucket Items:
+  ☐ View
+☐ Email:
+  ☐ Layouts
+  ☐ Styles
+  ☐ No Scripts
+☐ Notifications:
+  ☐ Blast
+☐ Optimizations:
+  ☐ GZip
+  ☐ Scripts in footer
+  ☐ JS Tests
+  ☐ Karma
+  ☐ SpyJS
+  ☐ PhantomJS
+  ☐ Documentation
+  ☐ Git
+  ☐ Issue Tracker
+  ☐ JS Doc Generator
+  ☐ PHP Tests
+
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+Archive:
+  ✔ JS Concat & Min @done(2015-07-04 11:26) @version(0.0.1) @project(Optimizations)
+  ✔ CSS Optimizer @done(2015-07-04 11:26) @version(0.0.1) @project(Optimizations)
+  ✔ Build System @done(2015-07-04 11:26) @version(0.0.1) @project(Optimizations)
+  ✔ Obfuscation @done(2015-07-04 11:26) @version(0.0.1) @project(Optimizations)
