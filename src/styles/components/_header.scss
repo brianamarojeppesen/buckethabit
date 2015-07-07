@@ -1,0 +1,99 @@
+header,
+main,
+footer {
+  padding-left: 240px;
+}
+nav.top-nav {
+  height: 122px;
+  box-shadow: none;
+  a.page-title {
+    line-height: 122px;
+    font-size: 48px;
+  }
+}
+a.button-collapse.top-nav {
+  position: absolute;
+  text-align: center;
+  height: 48px;
+  width: 48px;
+  left: 7.5%;
+  top: 0;
+  float: none;
+  margin-left: 1.5rem;
+  color: #fff;
+  font-size: 32px;
+  z-index: 2;
+}
+a.button-collapse.top-nav.full {
+  line-height: 122px;
+}
+ul.side-nav.fixed {
+  overflow: hidden;
+}
+ul.side-nav.fixed li {
+  line-height: 44px;
+}
+ul.side-nav.fixed li.logo {
+  text-align: center;
+  margin-top: 32px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #ddd;
+}
+ul.side-nav.fixed li a {
+  font-size: 13px;
+  line-height: 44px;
+  height: 44px;
+}
+#logo-container {
+  font-weight: 200;
+  height: 57px;
+  margin-bottom: 32px;
+  font-size: 1.5em;
+  line-height: 2.5em;
+}
+ul.side-nav.fixed ul.collapsible-accordion {
+  background-color: #fff;
+}
+.bold > a {
+  font-weight: bold;
+}
+@media only screen and (max-width : 992px) {
+  header,
+  main,
+  footer {
+    padding-left: 0;
+  }
+}
+@media only screen and (max-width : 992px) {
+  nav .nav-wrapper {
+    text-align: center;
+  }
+  nav .nav-wrapper a.page-title {
+    font-size: 36px;
+  }
+}
+@media only screen and (max-width : 600px) {
+  a.button-collapse.top-nav {
+    left: 5%;
+  }
+}
+ul.side-nav.fixed li.logo:hover {
+  background-color: transparent;
+}
+#signin_form {
+  margin: 0 1rem;
+  line-height: 1.5;
+}
+.form-error {
+  color: #f00;
+  font-size: 0.9em;
+}
+.side-nav .collapsible-body li a.create-account-link {
+  margin-left: 1rem;
+}
+.input-field label {
+  width: 100%;
+}
+.side-nav .collapsible li {
+  background-color: #fff;
+}

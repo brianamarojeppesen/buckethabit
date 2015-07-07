@@ -2,49 +2,54 @@ Projects:
 App Frame:
   ☐ Build site footer @version(0.0.2)
 Accounts:
-  ☐ View Page
-  ☐ Update Page
-  ☐ Accounts Table
-  ☐ Emails
-  ☐ Lost Password
-  ☐ Lost Username
-  ☐ Account Verification
-  ☐ Cronjob to Delete Unverified
-  ☐ Login Attempts
+  ☐ View Page @version(0.0.2)
+  ☐ Update Page @version(0.0.2)
+  ☐ Accounts Table @version(0.0.2)
+  ☐ Emails @version(0.0.5)
+  ☐ Lost Password @version(0.0.5)
+  ☐ Lost Username @version(0.0.5)
+  ☐ Account Verification @version(0.0.5)
+  ☐ Cronjob to Delete Unverified @version(0.0.5)
+  ☐ Login Attempts @version(0.0.5)
 Faqs:
-  ☐ AJAX
-  ☐ Admin
-  ☐ Styling
+  ☐ AJAX @version(0.0.2)
+  ☐ Admin @version(0.0.2)
+  ☐ Styling @version(0.0.2)
 News:
-  ☐ AJAX
-  ☐ Admin
-  ☐ Styling
+  ☐ AJAX @version(0.0.3)
+  ☐ Admin @version(0.0.3)
+  ☐ Styling @version(0.0.3)
 Support:
-  ☐ Ticket
-  ☐ Ticket Coms
+  ☐ Ticket @version(0.0.7)
+  ☐ Ticket Coms @version(0.0.7)
 Bucket Items:
-  ☐ View
+  ☐ View bucket page @version(0.0.8)
+  ☐ Edit bucket page @version(0.0.8)
+  ☐ Add bucket item page @version(0.0.8)
 Email:
-  ☐ Layouts
-  ☐ Styles
-  ☐ No Scripts
+  ☐ Layouts @version(0.0.4)
+  ☐ Styles @version(0.0.4)
+  ☐ No Scripts @version(0.0.4)
 Notifications:
-  ☐ Blast
+  ☐ Notifications @version(0.0.6)
+  ☐ Blast @version(0.0.6)
+  ☐ Plugin to Email system @version(0.0.6)
+  ☐ Add messaging options in account page @version(0.0.6)
 Optimizations:
-  ☐ GZip
-  ☐ Scripts in footer
+  ☐ GZip @version(0.0.9)
   ☐ JS Tests
   ☐ Karma
   ☐ SpyJS
   ☐ PhantomJS
-  ☐ Documentation
-  ☐ Git
-  ☐ Issue Tracker
-  ☐ JS Doc Generator
+  ☐ Documentation @version(0.0.2)
   ☐ PHP Tests
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+  ✔ Scripts in footer @version(0.0.1) @done(2015-07-06 20:28) @project(Optimizations)
+  ✔ Git @version(0.0.2) @done(2015-07-06 20:28) @project(Optimizations)
+  ✔ Issue Tracker @version(0.0.2) @done(2015-07-06 20:28) @project(Optimizations)
+  ✔ JS Doc Generator @done(2015-07-06 20:29) @project(Optimizations)
   ✔ menu (navbar) @done(2015-07-06 19:01) @project(App Frame)
   ✔ sidebar (sideNav) @done(2015-07-06 19:01) @project(App Frame)
   ✔ Build site header @version(0.0.2) @done(2015-07-06 19:02) @project(App Frame)
