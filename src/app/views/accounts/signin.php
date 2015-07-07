@@ -1,14 +1,33 @@
 <form id="signin_form" action="<?=site_url('accounts/validate_credentials'); ?>" method="post" accept-charset="utf-8">
 
-     <label for="username">Username</label>
-     <input type="text" name="signin_form_username" id="signin_form_username" placeholder="Username" />
+  <div class="row">
+    <div class="input-field col s12">
+       <input type="text" name="signin_form_username" id="signin_form_username">
+       <label for="signin_form_username">Username</label>
+    </div>
+  </div>
 
-     <label for="password">Password</label>
-     <input type="password" name="signin_form_password" id="signin_form_password" placeholder="Password" />
+  <div class="row">
+    <div class="input-field col s12">
+       <input type="password" name="signin_form_password" id="signin_form_password">
+       <label for="signin_form_password">Password</label>
+    </div>
+  </div>
 
-     <span id="signin_form_error" class="error"></span>
+  <div class="row">
+    <div id="signin_form_error" class="form-error col s12">
+    </div>
+  </div>
 
-     <input type="submit" name="submit" id="signin_form_submit" value="Login" />
-     <a href="<?=site_url('signup'); ?>">Create Account</a>
+  <div class="row">
+    <div class="col s12 center">
+      <button class="btn-flat waves-effect waves-light-blue" type="submit" name="submit" id="signin_form_submit">Login</button>
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="col s12 center">
+      <a class="btn-flat waves-effect waves-light-blue create-account-link" href="<?=site_url('signup'); ?>">Create Account</a>
+    </div>
+  </div>
 </form>

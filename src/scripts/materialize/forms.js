@@ -1,5 +1,8 @@
-(function ($) {
-  $(document).ready(function() {
+// (function ($) {
+  // $(document).ready(function() {
+(function(window,undefined){
+  // Localise Globals
+	var $ = window.jQuery, Materialize = window.Materialize;
 
     // Function to update labels of text fields
     Materialize.updateTextFields = function() {
@@ -260,7 +263,7 @@
       }
     });
 
-  }); // End of $(document).ready
+  // }); // End of $(document).ready
 
 
 
@@ -451,4 +454,5 @@
     });
   };
 
-}( jQuery ));
+// }( jQuery ));
+})(window);

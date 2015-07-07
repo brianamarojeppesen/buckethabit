@@ -1,3 +1,7 @@
+(function(window,undefined){
+  // Localise Globals
+	var jQuery = window.jQuery;
+  
     // Custom Easing
     jQuery.extend( jQuery.easing,
     {
@@ -7,3 +11,4 @@
       }
     });
 
+})(window);

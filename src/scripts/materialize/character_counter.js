@@ -1,4 +1,7 @@
-(function ($) {
+// (function ($) {
+(function(window,undefined){
+  // Localise Globals
+	var $ = window.jQuery;
 
   $.fn.characterCounter = function(){
     return this.each(function(){
@@ -56,4 +59,5 @@
     $('input, textarea').characterCounter();
   });
 
-}( jQuery ));
+// }( jQuery ));
+})(window);

@@ -1,5 +1,8 @@
-(function ($) {
-  $(document).ready(function() {
+// (function ($) {
+//   $(document).ready(function() {
+(function(window,undefined){
+  // Localise Globals
+	var $ = window.jQuery, Materialize = window.Materialize;
 
     // jQuery reverse
     $.fn.reverse = [].reverse;
@@ -15,7 +18,7 @@
       closeFABMenu($this);
     });
 
-  });
+  // });
 
   $.fn.extend({
     openFAB: function() {
@@ -58,4 +61,5 @@
   };
 
 
-}( jQuery ));
+// }( jQuery ));
+})(window);

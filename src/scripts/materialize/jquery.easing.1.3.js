@@ -35,6 +35,10 @@
  *
 */
 
+(function(window,undefined){
+  // Localise Globals
+	var jQuery = window.jQuery;
+
 // t: current time, b: begInnIng value, c: change In value, d: duration
 jQuery.easing['jswing'] = jQuery.easing['swing'];
 
@@ -170,6 +174,8 @@ jQuery.extend( jQuery.easing,
 		return jQuery.easing.easeOutBounce (x, t*2-d, 0, c, d) * .5 + c*.5 + b;
 	}
 });
+
+})(window);
 
 /*
  *

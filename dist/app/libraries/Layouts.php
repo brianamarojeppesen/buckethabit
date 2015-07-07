@@ -230,11 +230,11 @@
           {
 
                $this->menu_items = [ ];
-               $this->add_menu_item ( '' , 'Home' , 'icon' , 'home' );
+               $this->add_menu_item ( '' , 'Home' );
                //               $this->add_menu_item ( NULL , 'Menu item 2' , 'icon' , 'menu_item_2' );
                //               $this->add_menu_item ( 'url' , 'Menu item 2 1' , 'icon' , 'menu_item_2_1' , 'menu_item_2' );
                //               $this->add_menu_item ( 'url' , 'Menu item 3' , 'icon' , 'menu_item_3' );
-               $this->add_menu_item ( NULL , $this->signin_component () , 'icon' , 'signin_component' );
+               $this->add_menu_item ( NULL , $this->signin_component () , NULL , 'signin_component' );
           }
 
           public
@@ -252,16 +252,13 @@
                // Initialize a string that will hold all styles
 
                if ($level) {
-                    $final_menu .= '<ul class="submenu">';
+                    $final_menu .= '<div class="collapsible-body"><ul>';
                } else {
-                    $final_menu .= '<section class="centered-navigation" role="banner">'.
-                                   '<div class="centered-navigation-wrapper">'.
-                                   '<a href="javascript:void(0)" class="mobile-logo">'.
-                                   '<img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="Logo image">'.
-                                   '</a>'.
-                                   '<a href="javascript:void(0)" id="js-centered-navigation-mobile-menu" class="centered-navigation-mobile-menu no-bs">MENU</a>'.
-                                   '<nav role="navigation">';
-                    $final_menu .= '<ul id="js-centered-navigation-menu" class="centered-navigation-menu show">';
+                    // $final_menu .= '<nav role="navigation">';
+                    $final_menu .= '<ul id="nav-mobile" class="side-nav fixed">';
+                    $final_menu .= '<li class="logo"><a id="logo-container" href="/" class="brand-logo">'.$this->site_title.'</a></li>';
+                    $final_menu .= '<li class="no-padding">';
+                    $final_menu .= '<ul class="collapsible collapsible-accordion">';
                }
 
 //               $final_menu .= '<ul id="' . implode ( '_' , $menu_classes );
@@ -271,14 +268,16 @@
                foreach ( $menu as $menu_item )
                {
                     $menu_item_classes   = [ ];
-                    if ($menu_item['class'] === 'signin_component') $menu_item_classes[] = 'more';
-                    if (!$level) $menu_item_classes[] = 'nav-link';
+                    // if ($menu_item['class'] === 'signin_component') $menu_item_classes[] = 'more';
+                    if (!$level) $menu_item_classes[] = 'bold';
                     $menu_item_classes[] = $menu_item[ 'class' ];
 
                     $child_menu = '';
+                    $collapsible_header = 'collapsible-header';
                     if ( count ( $menu_item[ 'children' ] ) > 0 )
                     {
                          $menu_item_classes[] = 'more';
+                        //  $collapsible_header = "collapsible-header";
 
                          $child_menu = $this->print_menu (
                                    $menu_item[ 'children' ] ,
@@ -291,7 +290,9 @@
 
                     if ( isset( $menu_item[ 'url' ] ) )
                     {
-                         $menu_item_text = '<a href="' . $menu_item[ 'url' ] . '">' . $menu_item_text . '</a>';
+                         $menu_item_text = '<a href="' . $menu_item[ 'url' ] . '" class="'.$collapsible_header.' waves-effect waves-light-blue">' . $menu_item_text . '</a>';
+                    } else if ($menu_item['class'] !== 'signin_component') {
+                      $menu_item_text = '<a class="'.$collapsible_header.' waves-effect waves-light-blue">' . $menu_item_text . '</a>';
                     }
 
                     $final_menu .= '<li class="' . implode (
@@ -300,13 +301,15 @@
                               ) . '">' . $menu_item_text . $child_menu . '</li>';
                }
 
-               $final_menu .= '</ul>';
-
-               if (!$level) {
-                    $final_menu .= '</nav>'.
-                                   '</div>'.
-                                   '</section>';
+               if ($level) {
+                 $final_menu .= '</ul></div>';
+               } else {
+                 $final_menu .= '</ul></li></ul>';
                }
+
+              //  if (!$level) {
+              //       $final_menu .= '</nav>';
+              //  }
 
                $final_menu .= $post;
 
@@ -327,15 +330,15 @@
 
                if ( $this->is_logged_in () )
                {
-                    return '<a class="no-bs">'.$this->CI->session->username.'</a><ul class="submenu signin_component">'.
+                    return '<a class="no-bs collapsible-header waves-effect waves-light-blue">'.$this->CI->session->username.'</a><div class="collapsible-body"><ul>'.
                            '<li><a href="/account">My Account</a></li>'.
                            '<li class="signout_form">'.$this->signout_form ().'</li>'.
-                           '</ul>';
+                           '</ul></div>';
                }
                else
                {
-                    return '<a class="no-bs">Sign In</a><ul class="submenu signin_component"><li class="signin_form">' . $this->signin_form (
-                    ) . '</li></ul>';
+                    return '<a class="no-bs collapsible-header waves-effect waves-light-blue">Sign In</a><div class="collapsible-body"><ul><li class="signin_form">' . $this->signin_form (
+                    ) . '</li></ul></div>';
                }
           }
 

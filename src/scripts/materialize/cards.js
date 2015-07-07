@@ -1,5 +1,8 @@
-(function ($) {
-  $(document).ready(function() {
+// (function ($) {
+//   $(document).ready(function() {
+(function(window,undefined){
+  // Localise Globals
+	var $ = window.jQuery, Materialize = window.Materialize;
 
     $(document).on('click.card', '.card', function (e) {
       if ($(this).find('.card-reveal').length) {
@@ -23,5 +26,6 @@
 
     });
 
-  });
-}( jQuery ));
+//   });
+// }( jQuery ));
+})(window);

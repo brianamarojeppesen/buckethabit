@@ -1,4 +1,8 @@
-(function ($) {
+// (function ($) {
+(function(window,undefined){
+  // Localise Globals
+	var $ = window.jQuery, Materialize = window.Materialize;
+
   // Image transition function
   Materialize.fadeInImage =  function(selector){
     var element = $(selector);
@@ -46,7 +50,7 @@
   };
 
 
-  $(document).ready(function() {
+  // $(document).ready(function() {
     // Hardcoded .staggered-list scrollFire
     // var staggeredListOptions = [];
     // $('ul.staggered-list').each(function (i) {
@@ -150,5 +154,6 @@
     //     { opacity: "1", scaleX: 1, scaleY: 1, translateX: 0},
     //     { duration: 800, easing: [60, 10] });
     // });
-  });
-}( jQuery ));
+  // });
+// }( jQuery ));
+})(window);

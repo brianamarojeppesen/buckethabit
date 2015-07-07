@@ -1,35 +1,7 @@
-CSS:
-  Color:
-    All
-  Grid:
-    All
-  Helpers:
-    valign-wrapper & valign:
-      All
-
-
-General:
-  grid, footer
-Menu:
-  navbar, sideNav, badges
-Sign Up:
-  text, textarea, button, email, password, image
-Sign In:
-  text, button
-Accounts:
-
-
-
-Components:
-☐ App Frame:
-  ☐ menu (navbar)
-  ☐ sidebar (sideNav)
-
 Projects:
-☐ App Frame:
-  ☐ Build site header @version(0.0.2)
+App Frame:
   ☐ Build site footer @version(0.0.2)
-☐ Accounts:
+Accounts:
   ☐ View Page
   ☐ Update Page
   ☐ Accounts Table
@@ -39,26 +11,26 @@ Projects:
   ☐ Account Verification
   ☐ Cronjob to Delete Unverified
   ☐ Login Attempts
-☐ Faqs:
+Faqs:
   ☐ AJAX
   ☐ Admin
   ☐ Styling
-☐ News:
+News:
   ☐ AJAX
   ☐ Admin
   ☐ Styling
-☐ Support:
+Support:
   ☐ Ticket
   ☐ Ticket Coms
-☐ Bucket Items:
+Bucket Items:
   ☐ View
-☐ Email:
+Email:
   ☐ Layouts
   ☐ Styles
   ☐ No Scripts
-☐ Notifications:
+Notifications:
   ☐ Blast
-☐ Optimizations:
+Optimizations:
   ☐ GZip
   ☐ Scripts in footer
   ☐ JS Tests
@@ -73,6 +45,9 @@ Projects:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+  ✔ menu (navbar) @done(2015-07-06 19:01) @project(App Frame)
+  ✔ sidebar (sideNav) @done(2015-07-06 19:01) @project(App Frame)
+  ✔ Build site header @version(0.0.2) @done(2015-07-06 19:02) @project(App Frame)
   ✔ JS Concat & Min @done(2015-07-04 11:26) @version(0.0.1) @project(Optimizations)
   ✔ CSS Optimizer @done(2015-07-04 11:26) @version(0.0.1) @project(Optimizations)
   ✔ Build System @done(2015-07-04 11:26) @version(0.0.1) @project(Optimizations)

@@ -3,7 +3,8 @@
   // Localise Globals
   var $ = window.jQuery;
 
-$BS.connect($('a').not('.no-bs'), function() {
+$BS.connect('ajax_link', 'a', function() {
+  if ($(this).attr('href') && $(this).attr('href') !== '#'){
      $(this).click(function (event) {
           $url = $(this ).attr('href')
 
@@ -16,6 +17,7 @@ $BS.connect($('a').not('.no-bs'), function() {
           event.preventDefault()
           return false
      })
+   }
 })
 
 })(window);

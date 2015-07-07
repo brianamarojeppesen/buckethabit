@@ -1,3 +1,7 @@
+(function(window,undefined){
+  // Localise Globals
+	var $ = window.jQuery;
+
 Materialize = {};
 
 // Unique ID
@@ -27,10 +31,13 @@ Materialize.elementOrParentIsFixed = function(element) {
 };
 
 // Velocity has conflicts when loaded with jQuery, this will check for it
-var Vel;
 if ($) {
-  Vel = $.Velocity;
+  window.Vel = $.Velocity;
 }
 else {
-  Vel = Velocity;
+  window.Vel = Velocity;
 }
+
+module.exports = Materialize;
+
+})(window);

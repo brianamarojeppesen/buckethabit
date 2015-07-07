@@ -3,7 +3,7 @@
   // Localise Globals
   var $ = window.jQuery;
 
-  $BS.connect('body', function() {
+  $BS.connect('history', 'body', function() {
 
        // Bind to StateChange Event
        History.Adapter.bind(window, 'statechange', function() {

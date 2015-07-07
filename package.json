@@ -48,7 +48,8 @@
     "css-color-names": "latest",
     "postcss-colorblind": "latest",
     "csso": "latest",
-    "css-eliminator": "latest"
+    "css-eliminator": "latest",
+    "materialize-css": "latest"
   },
   "scripts": {
     "clean": "rimraf dist/* && mkdir dist/htdocs",
@@ -110,6 +111,7 @@
   "homepage": "https://github.com/brianamarojeppesen/buckethabit",
   "dependencies": {
     "watch-run": "~1.2.2",
-    "minifyify": "~7.0.2"
+    "minifyify": "~7.0.2",
+    "materialize-css": "~0.96.1"
   }
 }

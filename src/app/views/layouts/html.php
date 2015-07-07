@@ -7,15 +7,25 @@
 </head>
 <body>
      <header>
-          <h1 id="site_title" class="site_title"><?=$site_title;?></h1>
-          <?=$this->layouts->print_menu(null, null, 0, '<div id="menu">', '</div>'); ?>
+       <nav class="top-nav">
+         <div class="container">
+           <div class="nav-wrapper">
+             <a class="page-title"><?=$page_title;?></a>
+           </div>
+         </div>
+       </nav>
+       <div class="container">
+         <a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only">
+           <i class="mdi-navigation-menu"></i>
+         </a>
+       </div>
+       <?=$this->layouts->print_menu(null, null, 0, '<div id="menu">', '</div>'); ?>
      </header>
 
-     <section id="body" class="body">
-          <h2 id="page_title" class="page_title"><?=$page_title;?></h2>
-          <div id="content" class="content">
+     <main>
+          <div id="content" class="container">
                <?=$content;?>
           </div>
-     </section>
+     </main>
 </body>
 </html>

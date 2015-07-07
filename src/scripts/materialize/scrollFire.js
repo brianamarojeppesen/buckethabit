@@ -1,4 +1,7 @@
-(function($) {
+// (function($) {
+(function(window,undefined){
+  // Localise Globals
+	var $ = window.jQuery, Materialize = window.Materialize;
 
   // Input: Array of JSON objects {selector, offset, callback}
 
@@ -41,4 +44,5 @@
     }, 100);
   };
 
-})(jQuery);
+// })(jQuery);
+})(window);

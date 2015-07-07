@@ -1,10 +1,10 @@
 (function(factory) {
     if (typeof define === 'function' && define.amd) {
         define(['jquery', 'hammerjs'], factory);
-    } else if (typeof exports === 'object') {
-        factory(require('jquery'), require('hammerjs'));
+    // } else if (typeof exports === 'object') {
+    //     factory(window.jQuery, window.Hammer);
     } else {
-        factory(jQuery, Hammer);
+        factory(window.jQuery, window.Hammer);
     }
 }(function($, Hammer) {
     function hammerify(el, options) {

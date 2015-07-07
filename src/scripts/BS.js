@@ -11,17 +11,16 @@
         return this;
     };
 
-    $bs.prototype.connect = function( selector, callback ) {
+    $bs.prototype.connect = function( title, selector, callback ) {
       console.log('connecting '+selector);
         this.connections.push( {
+					title: title,
             selector: selector,
             callback: callback
         } );
     };
 
     $bs.prototype.update = function( context ) {
-
-        console.log('Updating $BS.');
 
         var $this = this;
 
@@ -30,15 +29,18 @@
                 $this.update( item );
             } );
         } else {
-            var $context = ( context ) ? $( context ) : $( "html" );
+            // var $context = ( context ) ? $( context ) : $( "html" );
+						var $context = $('html');
 
             $.each( $this.connections, function( index, $connection ) {
-              console.log('found connection with selector '+$connection.selector);
-
+							// console.log('Updating for '+$connection.selector);
                 $context.find( $connection.selector ).each( function( index, node ) {
-                    if ( !$( this ).attr( "bs_connected" ) ) {
-                        $( this ).attr( "bs_connected", true );
-                        $connection.callback.call( node, index, node );
+									// console.log('Found item of type '+$connection.selector);
+                    if ( !$( this ).attr( $connection.title+"_connected" ) ) {
+												$connection.callback.call( node, index, node );
+                        $( this ).attr( $connection.title+"_connected", true );
+												// console.log('Calling '+$connection.selector+' Function:');
+												// console.log($connection.callback);
                     }
                 } );
             } );
@@ -74,11 +76,13 @@
     $bs.prototype.post = function( success, error ) {
         // var self = this;
 
-        console.log( "Running query" );
+        // console.log( "Running query" );
 
         var $request = this.get_query();
 
         this.saved_query = null;
+
+				console.log(JSON.stringify($request));
 
         $request.success = function( data, textStatus, jqXHR ) {
             // alert(textStatus);
@@ -89,13 +93,13 @@
         }.bind(this);
 
         $request.error = function( jqXHR, textStatus, errorThrown ) {
-            alert(textStatus);
+            // alert(textStatus);
             // if ( typeof error === "function" ) {
             //     error( jqXHR );
             // }
         };
 
-        console.log($request);
+        // console.log($request);
 
         $.ajax( $request );
 
@@ -104,11 +108,26 @@
     $bs.prototype.respond = function( response, callback ) {
         $( response.changes ).each(
             function() {
-                if ( this.content !== null ) {
+							// console.log(this.target);
+                if ( 'content' in this ) {
+									// console.log('Content: '+this.content);
                     $( this.target ).html( this.content );
-                } else if ( this.value !== null ) {
+                } else if ( 'value' in this ) {
+									// console.log('Value: '+this.value);
                     $( this.target ).val( this.value );
-                }
+                } else if ('invalid' in this) {
+									// console.log('Error: '+this.invalid);
+									// console.log('Setting error on '+this.target+'_label to '+this.invalid);
+									$(this.target+'_label').attr('data-error', this.invalid);
+									$(this.target+'_label').attr('data-success', '');
+									$(this.target).removeClass('valid');
+									$(this.target).addClass('invalid');
+								} else if ('valid' in this) {
+									$(this.target+'_label').attr('data-success', this.valid);
+									$(this.target+'_label').attr('data-success', '');
+									$(this.target).removeClass('invalid');
+									$(this.target).addClass('valid');
+								}
 
                 if ( !response.is_test ) {
                     $BS.update( this.target );
@@ -119,6 +138,8 @@
                 }
             }
         );
+
+				// $BS.update();
 
         if ( response.redirect ) {
             $BS.query( response.redirect );

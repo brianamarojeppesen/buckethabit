@@ -87,8 +87,12 @@
                $data[ 'signup_form_email' ]      = $this->security->xss_clean($this->input->post ( 'signup_form_email' ));
                $data[ 'signup_form_username' ]   = $this->security->xss_clean($this->input->post ( 'signup_form_username' ));
                $data[ 'signup_form_lost_password_question_1' ]   = $this->security->xss_clean($this->input->post ( 'signup_form_lost_password_question_1' ));
+              //  $data[ 'signup_form_lost_password_answer_1' ]   = $this->security->xss_clean($this->input->post ( 'signup_form_lost_password_answer_1' ));
                $data[ 'signup_form_lost_password_question_2' ]   = $this->security->xss_clean($this->input->post ( 'signup_form_lost_password_question_2' ));
+              //  $data[ 'signup_form_lost_password_answer_2' ]   = $this->security->xss_clean($this->input->post ( 'signup_form_lost_password_answer_2' ));
                $data[ 'signup_form_lost_password_question_3' ]   = $this->security->xss_clean($this->input->post ( 'signup_form_lost_password_question_3' ));
+              //  $data[ 'signup_form_lost_password_answer_3' ]   = $this->security->xss_clean($this->input->post ( 'signup_form_lost_password_answer_3' ));
+
 
                if ( $this->input->post ( 'ajax' ) && ( ! $this->input->post ( 'test' ) ) )
                {
@@ -99,15 +103,23 @@
                     $data['changes'] = [];
 
                     if (form_error($this->input->post ( 'test_field' ))) {
+                        //  $data['changes'][] = [
+                        //            'target' => '#'.$this->input->post ( 'test_field' ).'_error',
+                        //            'content' => form_error($this->input->post ( 'test_field' ))
+                        //  ];
                          $data['changes'][] = [
-                                   'target' => '#'.$this->input->post ( 'test_field' ).'_error',
-                                   'content' => form_error($this->input->post ( 'test_field' ))
+                           'target' => '#'.$this->input->post('test_field'),
+                           'invalid' => form_error($this->input->post ( 'test_field' ), false, false)
                          ];
                     } else {
-                         $data['changes'][] = [
-                                   'target' => '#'.$this->input->post ( 'test_field' ).'_error',
-                                   'content' => ''
-                         ];
+                        //  $data['changes'][] = [
+                        //            'target' => '#'.$this->input->post ( 'test_field' ).'_error',
+                        //            'content' => ''
+                        //  ];
+                        $data['changes'][] = [
+                                  'target' => '#'.$this->input->post ( 'test_field' ),
+                                  'valid' => 'Success'
+                        ];
                     }
 
                     $data['changes'][] = [
